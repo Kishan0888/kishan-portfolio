@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kishan Kumar Jha — Portfolio
 
-## Getting Started
+Personal portfolio for Kishan Kumar Jha, Full Stack Developer (MERN, React, Next.js).
 
-First, run the development server:
+Built with Next.js 16 (App Router, TypeScript), Tailwind CSS 4, Motion for React and Lucide icons.
+
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run lint
+npx tsc --noEmit
+npm run build && npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Edit content
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| What | Where |
+| --- | --- |
+| Projects (names, copy, links, stack, screenshots) | `src/data/projects.ts` |
+| Contact details, services, skills, experience, education, process | `src/data/site.ts` |
+| Page title, description, Open Graph | `src/app/layout.tsx` |
+| Social preview image | `src/app/opengraph-image.tsx` |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Adding real project screenshots
 
-## Learn More
+Project cards show a labelled illustration until a real screenshot is provided.
+Save a screenshot of the live site to `public/projects/` and add an `image` field to that project:
 
-To learn more about Next.js, take a look at the following resources:
+```ts
+image: { src: "/projects/the-ca-connect.png", alt: "Home page of The CA Connect", width: 1600, height: 1000 },
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+A 16:10 image works best.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Adding a code link
 
-## Deploy on Vercel
+Set `repoUrl` on a project only when a public repository exists; the "View Code" link appears automatically.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Deploys to Vercel with no extra configuration. After deploying, set the environment variable
+`NEXT_PUBLIC_SITE_URL` to the live domain (for example `https://kishanjha.dev`) so canonical and social-preview URLs are absolute.
+
+## Contact form
+
+No backend or form service is configured. The inquiry form validates input and then opens the visitor's email app
+with a prefilled draft to kishanj1093@gmail.com. To collect submissions directly, connect a form service
+(Formspree, Resend, etc.) in `src/components/InquiryForm.tsx`.
+
+## Notes
+
+- Fonts (Geist, Bricolage Grotesque; both SIL Open Font License) are self-hosted from `src/fonts/`.
+- All animation respects the visitor's reduced-motion setting.
